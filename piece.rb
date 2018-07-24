@@ -23,8 +23,7 @@ class Piece
 end
 
 
-class Bishop < Piece
-end
+
 
 class Queen < Piece
 end
