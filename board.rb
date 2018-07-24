@@ -31,6 +31,10 @@ class Board
     grid[row][col] = arg
   end
 
+  def valid_pos?(pos)
+    pos.all? {|el| el < 8 && el > -1}
+  end
+
   private
 
   def populate_board
@@ -54,8 +58,6 @@ class Board
     grid[6] = Array.new(8, Piece.new)
     grid[7] = Array.new(8, Piece.new)
   end
-
-
 
   def valid_start_pos?(pos)
     self[pos] != nil
