@@ -16,8 +16,10 @@ class Display
       row.each_with_index do |el, col_idx|
         if (curs_row == row_idx && curs_col == col_idx)
           print " X ".colorize(:background => :red)
+        elsif (row_idx + col_idx).even?
+          print " X ".colorize(:background => :white)
         else
-          print " X "
+          print " X ".colorize(:background => :black)
         end
         print "|" if col_idx != row.length - 1
       end
