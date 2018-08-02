@@ -11,6 +11,7 @@ class Display
   end
 
   def render
+    system("clear")
     curs_row, curs_col = self.cursor.cursor_pos
     @board.grid.each_with_index do |row, row_idx|
       row.each_with_index do |el, col_idx|

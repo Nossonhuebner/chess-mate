@@ -21,11 +21,12 @@ class Board
   end
 
   def move_piece(start_pos, end_pos)
-    unless valid_start_pos?(start_pos) && valid_end_pos?(end_pos)
+    debugger
+    unless valid_pos?(start_pos) && valid_pos?(end_pos)
       raise "Invalid move"
     end
     self[end_pos] = self[start_pos]
-    self[start_pos] = nil
+    self[start_pos] = NullPiece.instance
   end
 
   def [](pos)
@@ -93,14 +94,6 @@ class Board
     ]
   end
 
-  def valid_start_pos?(pos)
-    self[pos] != nil
-  end
-
-  def valid_end_pos?(pos)
-    self[pos] == nil
-  end
-
   def move_piece!(color, start_pos, end_pos)
     if start_pos == nil
       raise NoPieceError.new("No Piece Selected")
@@ -111,23 +104,14 @@ class Board
     self[start_pos], self[end_pos] = self[end_pos], self[start_pos]
   end
 
-  def [](*pos)
-    debugger
+  def [](pos)
     row, col = pos
     @grid[row][col]
   end
 
   def []=(pos, arg)
     row, col = pos
-    # debugger
     @grid[row][col] = arg
-  end
-
-  def valid_pos?(pos)
-    self[pos].nil? && pos.all? {|el| el < 8 && el > -1}
-  end
-
-  def add_piece(piece,pos)
   end
 
   def checkmate?(color)
@@ -143,18 +127,12 @@ class Board
   def find_king(color)
     self.grid.each_with_index do |row, row_idx|
       row.each_with_index do |col, col_idx|
-        return [row_idx, col_idx] if col.is_a?(King) && col.color? == :black
+        return [row_idx, col_idx] if col.is_a?(King) && col.color? == color
       end
     end
   end
 
   def pieces
-  end
-
-  def move_piece(color, start_pos, end_pos)
-    temp_arr = self.grid.dup
-    temp_board = Board.new(temp_arr)
-    temp_board.move_piece!(color, start_pos, end_pos)
   end
 
   def dup
@@ -167,9 +145,9 @@ class Board
 
   def other_color(color)
     if :black
-      return :white
+       :white
     else
-      return :black
+     :black
     end
   end
 

@@ -38,6 +38,7 @@ class Cursor
   def initialize(cursor_pos, board)
     @cursor_pos = cursor_pos
     @board = board
+    @selected = false
   end
 
   def get_input
@@ -46,6 +47,11 @@ class Cursor
   end
 
   private
+
+
+  def toggle_selected
+    @selected = !@selected
+  end
 
   def read_char
     STDIN.echo = false
