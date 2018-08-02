@@ -3,7 +3,7 @@ require_relative 'piece.rb'
 class Pawn < Piece
 
   def symbol
-    self.color == :black ? '♟' : '♙'
+    self.color == :black ? '♟'.colorize(self.color) : '♙'.colorize(self.color)
   end
 
   def at_start_row?

@@ -2,9 +2,9 @@ require_relative 'piece.rb'
 require_relative 'stepping_piece.rb'
 
 class Knight < Piece
-  includes Stepable
+  include Stepable
   def symbol
-    self.color == :black ? '♞' : '♘'
+    self.color == :black ? '♞'.colorize(self.color) : '♘'.colorize(self.color)
   end
 
   def move_diffs

@@ -15,11 +15,11 @@ class Display
     @board.grid.each_with_index do |row, row_idx|
       row.each_with_index do |el, col_idx|
         if (curs_row == row_idx && curs_col == col_idx)
-          print " X ".colorize(:background => :red)
+          print " #{el.symbol} ".colorize(:background => :red)
         elsif (row_idx + col_idx).even?
-          print " X ".colorize(:background => :white)
+          print " #{el.symbol} ".colorize(:background => :yellow)
         else
-          print " X ".colorize(:background => :black)
+          print " #{el.symbol} ".colorize(:background => :blue)
         end
         print "|" if col_idx != row.length - 1
       end
@@ -36,5 +36,6 @@ if __FILE__ == $PROGRAM_NAME
   b = Board.new
   d = Display.new(b)
   index = 0
-  # p b[4,2]
+  p b[4,2]
+  d.render
 end

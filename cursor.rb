@@ -85,7 +85,8 @@ class Cursor
     if valid_space?(new_pos)
       @cursor_pos = new_pos
     else
-    raise InvalidPositionError.new("Position Outside Board")
+      raise InvalidPositionError.new("Position Outside Board")
+    end
   end
 
   def valid_space?(pos)
