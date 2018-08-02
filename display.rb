@@ -29,3 +29,12 @@ class Display
   end
 
 end
+
+
+
+if __FILE__ == $PROGRAM_NAME
+  b = Board.new
+  d = Display.new(b)
+  index = 0
+  # p b[4,2]
+end

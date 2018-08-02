@@ -1,6 +1,6 @@
 class Piece
-  def initialize(color, symbol, pos)
-    @color, @symbol, @pos = color, symbol, pos
+  def initialize(color = :null, board = nil, pos = nil)
+    @color, @board, @pos = color, board, pos
   end
 
   def to_s

@@ -1,4 +1,5 @@
 require "io/console"
+class InvalidPositionError < StandardError; end
 
 KEYMAP = {
   " " => :space,
@@ -81,6 +82,13 @@ class Cursor
     new_row = cursor_pos[0] + diff[0]
     new_col = cursor_pos[1] + diff[1]
     new_pos = [new_row, new_col]
-    @cursor_pos = new_pos
+    if valid_space?(new_pos)
+      @cursor_pos = new_pos
+    else
+    raise InvalidPositionError.new("Position Outside Board")
+  end
+
+  def valid_space?(pos)
+    pos.all? {|el| el < 8 && el > -1}
   end
 end
