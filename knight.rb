@@ -7,7 +7,7 @@ class Knight < Piece
     self.color == :black ? '♞'.colorize(self.color) : '♘'.colorize(self.color)
   end
 
-  def move_diffs
+  def move_dirs
     moves = []
     (-2..2).each do |idx1|
       next if idx1 == 0

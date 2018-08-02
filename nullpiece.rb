@@ -15,7 +15,8 @@ class NullPiece
   end
 
   def color
-  end 
+    :null
+  end
 
 
 end

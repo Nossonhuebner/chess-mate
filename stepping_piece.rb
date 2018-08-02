@@ -1,5 +1,5 @@
 module Stepable
-  def moves
+  def valid_moves
     dirs = self.move_dirs
     pos = self.pos
     possible_moves = []

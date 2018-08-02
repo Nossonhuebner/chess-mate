@@ -1,5 +1,5 @@
 module Slidable
-  def moves
+  def valid_moves
     dirs = self.move_dirs
     pos = self.pos
     possible_moves = []
@@ -11,7 +11,7 @@ module Slidable
 
       while valid_pos(temp_pos)
         possible_moves << temp_pos
-        break unless self.board[temp_pos].class = NullPiece
+        break unless self.board[temp_pos].class == NullPiece
         temp_pos[0] += dir[0]
         temp_pos[1] += dir[1]
       end

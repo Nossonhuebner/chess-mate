@@ -15,7 +15,7 @@ class Pawn < Piece
     false
   end
 
-  def move_dirs
+  def valid_moves
     forward_steps + side_attacks
   end
 

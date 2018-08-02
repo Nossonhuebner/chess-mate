@@ -15,9 +15,9 @@ class CannotMoveError < StandardError ; end
 class Board
   attr_accessor :grid
 
-  def initialize
-    @grid = []
-    populate_board
+  def initialize(board = [])
+    @grid = board
+    populate_board if board.length == 0
   end
 
 
@@ -94,7 +94,7 @@ class Board
 
 
 
-  def move_piece!(color, start_pos, end_pos)
+  def move_piece!(start_pos, end_pos)
     if start_pos == nil
       raise NoPieceError.new("No Piece Selected")
     elsif !valid_space?(end_pos)
@@ -112,8 +112,6 @@ class Board
   def in_check?(color)
     king_pos = find_king(color)
     enemy_color = other_color(color)
-
-
   end
 
   def find_king(color)
@@ -128,11 +126,7 @@ class Board
   end
 
   def dup
-    new_array = []
-    self.each do |el|
-      new_array << (el.is_a?(Array) ? el.deep_dup : el)
-    end
-    new_array
+    self.grid.deep_dup
   end
 
   def other_color(color)
@@ -143,4 +137,16 @@ class Board
     end
   end
 
+end
+
+class Array
+
+  def deep_dup
+    return self if self.length <= 1
+    new_arr = []
+    self.each do |el|
+      new_arr << (el.is_a?(Array) ? el.deep_dup : el)
+    end
+    new_arr
+  end
 end
