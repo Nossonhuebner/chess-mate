@@ -3,13 +3,9 @@ require_relative 'sliding_piece.rb'
 
 class Rook < Piece
   includes Slidable
-  def initialize(color, symbol, pos)
-    super
-    @symbol = symbol
-  end
 
   def symbol
-    self.color == 'black' ? '♜' : '♖'
+    self.color == :black ? '♜' : '♖'
   end
 
 

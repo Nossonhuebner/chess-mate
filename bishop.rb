@@ -4,7 +4,7 @@ require_relative 'sliding_piece.rb'
 class Bishop < Piece
   includes Slidable
   def symbol
-    self.color == 'black' ? '♝' : '♗'
+    self.color == :black ? '♝' : '♗'
   end
 
   def move_dirs

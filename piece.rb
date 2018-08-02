@@ -10,6 +10,7 @@ class Piece
   end
 
   def valid_moves
+
   end
 
   def pos=(val)
@@ -19,6 +20,10 @@ class Piece
   end
 
   def move_into_check(end_pos)
+    temp_arr = self.board.dup
+    temp_board = Board.new(temp_arr)
+    temp_board.move_piece!(self.color, self.pos, end_pos)
+    temp_board.in_check?(self.color)
   end
 end
 

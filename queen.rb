@@ -9,6 +9,6 @@ class Queen < Piece
   end
 
   def symbol
-    self.color == 'black' ? '♛' : '♕'
+    self.color == :black ? '♛' : '♕'
   end
 end
