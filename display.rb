@@ -15,7 +15,9 @@ class Display
     curs_row, curs_col = self.cursor.cursor_pos
     @board.grid.each_with_index do |row, row_idx|
       row.each_with_index do |el, col_idx|
-        if (curs_row == row_idx && curs_col == col_idx)
+        if (curs_row == row_idx && curs_col == col_idx && self.cursor.selected)
+          print " #{el.symbol} ".colorize(:background => :green)
+        elsif (curs_row == row_idx && curs_col == col_idx)
           print " #{el.symbol} ".colorize(:background => :red)
         elsif (row_idx + col_idx).even?
           print " #{el.symbol} ".colorize(:background => :yellow)

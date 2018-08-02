@@ -20,31 +20,6 @@ class Board
     populate_board
   end
 
-  def move_piece(start_pos, end_pos)
-    debugger
-    unless valid_pos?(start_pos) && valid_pos?(end_pos)
-      raise "Invalid move"
-    end
-    self[end_pos] = self[start_pos]
-    self[start_pos] = NullPiece.instance
-  end
-
-  def [](pos)
-    debugger
-    row, col = pos
-    grid[row][col]
-  end
-
-  def []=(pos, arg)
-    row, col = pos
-    grid[row][col] = arg
-  end
-
-  def valid_pos?(pos)
-    pos.all? {|el| el < 8 && el > -1}
-  end
-
-  private
 
   def populate_board
     populate_black
@@ -94,6 +69,31 @@ class Board
     ]
   end
 
+  def [](pos)
+    row, col = pos
+    @grid[row][col]
+  end
+
+  def []=(pos, arg)
+    row, col = pos
+    @grid[row][col] = arg
+  end
+
+  def move_piece(start_pos, end_pos)
+    debugger
+    unless valid_pos?(start_pos) && valid_pos?(end_pos)
+      raise "Invalid move"
+    end
+    self[end_pos] = self[start_pos]
+    self[start_pos] = NullPiece.instance
+  end
+
+  def valid_pos?(pos)
+    pos.all? {|el| el < 8 && el > -1}
+  end
+
+
+
   def move_piece!(color, start_pos, end_pos)
     if start_pos == nil
       raise NoPieceError.new("No Piece Selected")
@@ -104,15 +104,7 @@ class Board
     self[start_pos], self[end_pos] = self[end_pos], self[start_pos]
   end
 
-  def [](pos)
-    row, col = pos
-    @grid[row][col]
-  end
 
-  def []=(pos, arg)
-    row, col = pos
-    @grid[row][col] = arg
-  end
 
   def checkmate?(color)
   end
