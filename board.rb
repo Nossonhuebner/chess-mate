@@ -70,6 +70,7 @@ class Board
   end
 
   def [](pos)
+    debugger
     row, col = pos
     @grid[row][col]
   end
@@ -129,12 +130,18 @@ class Board
     self.grid.deep_dup
   end
 
+  def empty?(pos)
+    row, col = pos
+    @grid[row][col].color == :null
+  end
+
+  def enemy_piece?(pos, my_color)
+    row, col = pos
+    @grid[row][col].color == other_color(my_color)
+  end
+
   def other_color(color)
-    if :black
-       :white
-    else
-     :black
-    end
+    color == :black ? :white : :black
   end
 
 end
