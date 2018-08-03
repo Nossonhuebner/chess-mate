@@ -70,7 +70,6 @@ class Board
   end
 
   def [](pos)
-    debugger
     row, col = pos
     @grid[row][col]
   end
@@ -81,11 +80,11 @@ class Board
   end
 
   def move_piece(start_pos, end_pos)
-    debugger
     unless valid_pos?(start_pos) && valid_pos?(end_pos)
       raise "Invalid move"
     end
     self[end_pos] = self[start_pos]
+    self[end_pos].pos = end_pos
     self[start_pos] = NullPiece.instance
   end
 
@@ -108,17 +107,35 @@ class Board
 
 
   def checkmate?(color)
+    king = find_king(color)
+    return true if in_check?(color) && king.valid_moves.empty?
+    false
+  end
+
+  def all_color_moves(color)
+    pieces = []
+    self.grid.each_with_index do |row, row_idx|
+      row.each_with_index do |el, col_idx|
+         enemy_pieces << el if el.color == color
+      end
+    end
+    moves = []
+    pieces.each do |piece|
+      moves << piece.valid_moves
+    end
   end
 
   def in_check?(color)
     king_pos = find_king(color)
     enemy_color = other_color(color)
+    return true if all_color_moves(enemy_color).include?(king_pos)
+    false
   end
 
   def find_king(color)
     self.grid.each_with_index do |row, row_idx|
       row.each_with_index do |col, col_idx|
-        return [row_idx, col_idx] if col.is_a?(King) && col.color? == color
+        return [row_idx, col_idx] if col.is_a?(King) && col.color == color
       end
     end
   end

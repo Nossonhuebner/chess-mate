@@ -11,10 +11,6 @@ class Piece
   def empty?
   end
 
-
-  def pos=(val)
-  end
-
   def symbol
   end
 

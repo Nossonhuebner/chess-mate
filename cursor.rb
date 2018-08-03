@@ -48,11 +48,6 @@ class Cursor
 
   private
 
-
-  def toggle_selected
-    @selected = !@selected
-  end
-
   def read_char
     STDIN.echo = false
 
@@ -73,7 +68,11 @@ class Cursor
   end
 
   def toggle_selected
-    @selected = !@selected
+    if @selected == false
+      @selected = cursor_pos
+    else
+      @selected = false
+    end
   end
 
   def handle_key(key)

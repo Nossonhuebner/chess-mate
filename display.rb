@@ -8,14 +8,22 @@ class Display
   def initialize(board)
     @cursor = Cursor.new([0, 0], board)
     @board = board
+    @selected = nil
   end
 
+
+
   def render
+    if cursor.selected
+      @selected = cursor.selected
+    elsif @selected && @board[@selected].valid_moves.include?(cursor.cursor_pos)
+      @board.move_piece(@selected, cursor.cursor_pos)
+    end
     system("clear")
     curs_row, curs_col = self.cursor.cursor_pos
     @board.grid.each_with_index do |row, row_idx|
       row.each_with_index do |el, col_idx|
-        if (curs_row == row_idx && curs_col == col_idx && self.cursor.selected)
+        if (self.cursor.selected && self.cursor.selected[0] == row_idx && self.cursor.selected[1] == col_idx)
           print " #{el.symbol} ".colorize(:background => :green)
         elsif (curs_row == row_idx && curs_col == col_idx)
           print " #{el.symbol} ".colorize(:background => :red)
@@ -28,7 +36,13 @@ class Display
       end
       print "\n-------------------------------\n"
     end
+    @cursor.get_input
+    render
     return nil
+  end
+
+  def handle_move
+
   end
 
 end

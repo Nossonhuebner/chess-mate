@@ -36,6 +36,7 @@ class Pawn < Piece
   def side_attacks
     pot_side_attacks = []
     check_pos = forward_steps[0]
+    return [] unless check_pos
     check_row, check_col = check_pos
     if self.board.enemy_piece?([check_row, (check_col + 1)], self.color)
       pot_side_attacks << [check_row, (check_col + 1)]

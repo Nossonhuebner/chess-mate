@@ -6,7 +6,8 @@ class NullPiece
   def initialize
   end
 
-  def moves
+  def valid_moves
+    []
   end
 
 

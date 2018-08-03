@@ -5,7 +5,6 @@ module Slidable
     possible_moves = []
 
     dirs.each do |dir|
-      debugger
       temp_pos = []
       temp_pos[0] = pos[0] + dir[0]
       temp_pos[1] = pos[1] + dir[1]
