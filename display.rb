@@ -18,6 +18,7 @@ class Display
       @selected = cursor.selected
     elsif @selected && @board[@selected].valid_moves.include?(cursor.cursor_pos)
       @board.move_piece(@selected, cursor.cursor_pos)
+    else @cursor.selected = false;
     end
     system("clear")
     curs_row, curs_col = self.cursor.cursor_pos
